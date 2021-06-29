@@ -1,24 +1,66 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Menu from './components/Menu'
+import imageReact from './imageReact.png'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Menu />
+      <div className="row">
+        <div className="col-12 col-md-7">
+          <div className="container">
+            <h4
+              style={{
+                marginTop: "100px",
+                marginLeft: "100px",
+                opacity: "0.6",
+              }}
+            >
+              WE ARE A FULL SERVICE
+            </h4>
+
+            <h1
+              style={{
+                marginTop: "100px",
+                marginLeft: "100px",
+              }}
+            >
+              DESIGN <br />
+              AGENCY
+            </h1>
+            <p
+              style={{
+                marginTop: "50px",
+                marginLeft: "100px",
+              }}
+            >
+              It is a long establish fact taht a reader will be
+              <br />
+              distracted by the readable content of a page <br />
+              when looking at its layout. The point of using
+              <br /> Lorem ipsum is that it has normal
+            </p>
+          </div>
+        </div>
+        <div
+          className="col-12 col-md-5"
+          style={{
+            width: "100%",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <img
+          id="right-content"
+            alt="img"
+            src={imageReact}
+            style={{
+              width: "50vw",
+              height: "90vh",
+              // backgroundPosition: "center",
+              // backgroundSize: "cover",
+            }}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
