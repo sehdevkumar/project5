@@ -1,65 +1,37 @@
 import './App.css';
 import Menu from './components/Menu'
-import imageReact from './imageReact.png'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import Home from './components/Home';
+import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
+import Logout from './components/Auth/Logout';
+
 function App() {
   return (
     <>
-      <Menu />
-      <div className="row">
-        <div className="col-12 col-md-7">
-          <div className="container">
-            <h4
-              style={{
-                marginTop: "100px",
-                marginLeft: "100px",
-                opacity: "0.6",
-              }}
-            >
-              WE ARE A FULL SERVICE
-            </h4>
+      <Router>
+        <Menu />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/logout">
+            <Logout />
+          </Route>
 
-            <h1
-              style={{
-                marginTop: "100px",
-                marginLeft: "100px",
-              }}
-            >
-              DESIGN <br />
-              AGENCY
-            </h1>
-            <p
-              style={{
-                marginTop: "50px",
-                marginLeft: "100px",
-              }}
-            >
-              It is a long establish fact taht a reader will be
-              <br />
-              distracted by the readable content of a page <br />
-              when looking at its layout. The point of using
-              <br /> Lorem ipsum is that it has normal
-            </p>
-          </div>
-        </div>
-        <div
-          className="col-12 col-md-5"
-          style={{
-            width: "100%",
-          }}
-        >
-          <img
-          id="right-content"
-            alt="img"
-            src={imageReact}
-            style={{
-              width: "50vw",
-              height: "90vh",
-              // backgroundPosition: "center",
-              // backgroundSize: "cover",
-            }}
-          />
-        </div>
-      </div>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route path="*">
+            <center>
+              <h3>404 Page Not Found!</h3>
+            </center>
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }

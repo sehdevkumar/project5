@@ -1,85 +1,83 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Menu() {
-    return (
-      <>
-        <nav
-          class="navbar navbar-expand-lg navbar-light bg-light"
+  const imformation = useSelector((state) => state.authReducer);
+  const [getLoggedIn, setLoggedIn] = useState(false);
+
+  const token = localStorage.getItem("jwt_token");
+  useEffect(() => {
+    if (imformation.loggedOn || token) {
+      setLoggedIn(true);
+    }
+  }, [imformation, token, getLoggedIn]);
+
+  return (
+    <>
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light"
+        style={{
+          background: "#FFFFFF",
+          boxShadow: "2px 1px 6px -2px rgba(0,0,0,0.3)",
+        }}
+      >
+        <div
+          className="navbar-brand"
           style={{
-            background: "#FFFFFF",
-            boxShadow: "2px 1px 6px -2px rgba(0,0,0,0.3)",
+            fontWeight: "bold",
           }}
         >
-          <div
-            class="navbar-brand"
-            style={{
-              fontWeight: "bold",
-            }}
-          >
-            Design Agency Home Page
-          </div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          Project Management App
+        </div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-          <div
-            class="collapse navbar-collapse navbar-right"
-            id="navbarSupportedContent"
-          >
-            <ul class="navbar-nav ml-auto navbar-right">
-              <li class="nav-item active">
-                <div class="nav-link">Landing</div>
+        <div
+          className="collapse navbar-collapse navbar-right"
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav ml-auto navbar-right">
+            <li className="nav-item active">
+              <NavLink to="/" className="nav-link">
+                Home<span className="sr-only">(current)</span>
+              </NavLink>
+            </li>
+            {!getLoggedIn && (
+              <li className="nav-item active">
+                <NavLink to="/register" className="nav-link">
+                  Register
+                </NavLink>
               </li>
-              <li class="nav-item active">
-                <div class="nav-link">
-                  Home <span class="sr-only">(current)</span>
-                </div>
+            )}
+            {!getLoggedIn && (
+              <li className="nav-item active">
+                <NavLink to="/login" className="nav-link">
+                  Login
+                </NavLink>
               </li>
-              <li class="nav-item">
-                <div class="nav-link">About</div>
+            )}
+            {getLoggedIn && (
+              <li className="nav-item active">
+                <NavLink to="/logout" className="nav-link">
+                  Logout
+                </NavLink>
               </li>
-              <li class="nav-item">
-                <div class="nav-link">Contact</div>
-              </li>
-              <li class="nav-item ">
-                <div class="nav-link">Blog</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">Case Study</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">Portfolio</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">Project 1</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">Project 2</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">Project 3</div>
-              </li>
-              <li>
-                <img
-                  class="nav-link"
-                  style={{ width: "50px", background: "none" }}
-                  alt="cart"
-                  src="https://e7.pngegg.com/pngimages/376/759/png-clipart-black-shopping-cart-icon-computer-icons-grocery-store-shopping-cart-icon-shopping-basket-miscellaneous-angle.png"
-                />
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </>
-    );
+            )}
+          </ul>
+        </div>
+      </nav>
+    </>
+  );
 }
 
-export default Menu
+export default Menu;
